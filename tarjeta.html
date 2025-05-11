@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación de tarjeta</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fdf0e7;
+        }
+
+        #container {
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 350px;  /* Mantenemos el ancho */
+            height: 350px;  /* Aumentamos la altura de la tarjeta para que el texto encaje mejor */
+            background-color: #f8c4d9; /* Un rosa suave */
+            border-radius: 15px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card .front, .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff5c8d;
+            padding: 20px;
+        }
+
+        .card .front {
+            background-color: #fff0f5;
+        }
+
+        .card .back {
+            background-color: #ffdbdb; /* Color suave y cálido */
+            transform: rotateY(180deg);
+            color: #4b1f29; /* Un tono oscuro, cálido */
+            padding: 10px;
+            line-height: 1.6;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #c75c9f; /* Color llamativo, bonito y cálido */
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .flower {
+            font-size: 30px;
+            color: #ff5c8d;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="card" id="card">
+            <div class="front">
+                <div>
+                    <p>De: Camilo</p>
+                    <p>Para: Aleja</p>
+                </div>
+            </div>
+            <div class="back">
+                <div class="message">
+                    <p><strong>Agradezco a la vida el poder haberte encontrado. Ser capaz de distinguirte ha sido una experiencia maravillosa.</strong><br>
+                    Siempre has estado ahí para quienes te necesitamos, mostrando un corazón tan grande como tu bondad. Tu apoyo es invaluable y me siento afortunado de contar con alguien como tú.<br>
+                    <strong>Estaré para ti siempre, sin importar las circunstancias, porque lo que has hecho por mí es algo que nunca olvidaré.</strong><br>
+                    Eres única, y el mundo es un lugar mejor gracias a tu existencia.</p>
+                    <div class="flower">🌸</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para girar la tarjeta al hacer clic o presionar Enter
+        document.addEventListener('click', flipCard);
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                flipCard();
+            }
+        });
+
+        function flipCard() {
+            const card = document.getElementById('card');
+            card.style.transform = 'rotateY(180deg)';
+        }
+    </script>
+</body>
+</html>
